@@ -17,4 +17,7 @@ public class Role extends BaseDomain {
     //many2many
     private List<Permission> permissions = new ArrayList<>();
 
+
+    private int age;
+
 }
