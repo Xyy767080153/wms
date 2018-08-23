@@ -18,6 +18,4 @@ public class Role extends BaseDomain {
     private List<Permission> permissions = new ArrayList<>();
 
 
-    private int age;
-
 }
