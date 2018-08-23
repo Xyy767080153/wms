@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wolfcode.wms.mapper.SystemMenuMapper">
+  <resultMap id="BaseResultMap" type="cn.wolfcode.wms.domain.SystemMenu">
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="url" property="url" />
+    <result column="sn" property="sn" />
+    <association property="parent" javaType="systemMenu" columnPrefix="parent_">
+      <id column="id" property="id" />
+      <result column="name" property="name" />
+    </association>
+  </resultMap>
+  <delete id="deleteByPrimaryKey">
+    delete from systemmenu
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    insert into systemmenu (name, url, sn, parent_id)
+    values (#{name}, #{url}, #{sn}, #{parent.id})
+  </insert>
+  <update id="updateByPrimaryKey">
+    update systemmenu
+    set name = #{name},
+      url = #{url},
+      sn = #{sn},
+      parent_id = #{parent.id}
+    where id = #{id}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select id, name, url, sn, parent_id
+    from systemmenu
+    where id = #{id}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, url, sn, parent_id
+    from systemmenu
+  </select>
+    <select id="selectForCount" resultType="int">
+      select count(*) from systemmenu
+    </select>
+  <select id="selectForList" resultMap="BaseResultMap">
+
+  </select>
+</mapper>
